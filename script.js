@@ -1,38 +1,3 @@
-/*
-simon-dice
-1. Al via il computer genera 5 numeri
-2. Vengono mostrati per 5 secondi i numeri generati
-3. L'utente deve indovinare i 5 numeri
-4. Quindi c'è un'attesa di 5 secondi perchè il computer mostra calcolo in corso
-5. Vengono mostrati i numeri indovinati
- */
-
-/* $(document).ready(function(){
-    
-    reset();
-    // array dei numeri ramdom generati dal computer
-    var arrRandom = [];
-    var arrNumber = [];
-    var arrResult = [];
-  
-    $('#btn-start').click(function(){
-      $(this).hide();
-      while(arrRandom.length < 5){
-        arrRandom.push(generatorRandomNumber(1,100));
-      }
-      console.log(arrRandom)
-  
-      printOutput(arrRandom.toString(),'#display')
-  
-      setTimeout(function(){
-        printOutput('Indovina i 5 numeri', '#display');
-        $('#btn-box').show();
-      }, 5000);
-  
-    });
-  
-  }) */
-
 $(document).ready(function(){
 
     reset();
@@ -41,7 +6,10 @@ $(document).ready(function(){
 
     var arrRandom = [];
     var arrUtente = [];
-    var arrRisultato = [];
+
+    // VARIABILI
+
+    var counter = 0;
 
     // START
 
@@ -65,14 +33,32 @@ $(document).ready(function(){
 
     $("#btn").click(function(){
 
-        arrUtente.push($("#input").val());
+        var numero = parseInt($("input").val());
+        $("input").val("");
+        arrUtente.push(numero);
+
         console.log(arrUtente);
+
+        if(arrRandom.indexOf(numero) == -1){
+            counter += 0;
+        }else{
+            counter += 1;
+        }
+
+        if(arrUtente.length > 4){
+
+            $(this).hide(); 
+            $("input").hide();
+            
+            printOutput("Hai indovinato " + counter + " numeri","#finale");
+
+        }
+
+        console.log(counter);
 
     })
 
-    
-
-  })
+})
 
   // FUNZIONI
 
