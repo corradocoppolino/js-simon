@@ -27,6 +27,7 @@ $(document).ready(function(){
         setTimeout(function(){
             printOutput('Indovina i 5 numeri', '#display');
             $('#btn-box').show();
+            $("#restart").hide(); 
         }, 5000);
 
     })
@@ -49,12 +50,33 @@ $(document).ready(function(){
 
             $(this).hide(); 
             $("input").hide();
-            
-            printOutput("Hai indovinato " + counter + " numeri","#finale");
 
+            printOutput("Calcolo in corso...","#finale");
+            //console.log(counter);
+
+            setTimeout(function(){
+
+                if(counter == 0){
+                    printOutput("Hai perso, nessun numero indovinato!","#finale");
+                }else{
+                    printOutput("Hai indovinato " + counter + " numeri","#finale");
+                }
+
+                $("#restart").show();
+                
+                $("#restart").click(function(){
+
+                    location.reload();
+            
+                })
+                
+            }, 3000);
+
+
+        
         }
 
-        console.log(counter);
+        //console.log(counter);
 
     })
 
